@@ -35,11 +35,10 @@ public class ShellExample implements Runnable {
     
     try {
       tempDir = Files.createTempDir();
-      tempDir.deleteOnExit();
 
       final String PASSWORD = "pass1234";
 
-      mac = new MiniAccumuloCluster(tempDir, PASSWORD);
+      mac = new MiniAccumuloClusterWrapper(tempDir, PASSWORD);
 
       mac.start();
 
@@ -55,10 +54,6 @@ public class ShellExample implements Runnable {
       System.err.println("Error starting MiniAccumuloCluster: " + e.getMessage());
       System.exit(1);
     } finally {
-      if (null != tempDir) {
-        tempDir.delete();
-      }
-
       if (null != mac) {
         try {
           mac.stop();

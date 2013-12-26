@@ -54,16 +54,12 @@ public class ExampleAccumuloUnitTest {
 
     folder.create();
     
-    log.debug("Using " + folder.getRoot());
-    
     MiniAccumuloConfig config = new MiniAccumuloConfig(folder.getRoot(), "superSecret");
     config.setNumTservers(1);
-    
-    
-    accumulo = new MiniAccumuloCluster(config);
+
+    accumulo = new MiniAccumuloClusterWrapper(config);
     
     accumulo.start();
-    
   }
 
   @Test(timeout = 120000) //2 minutes
@@ -121,6 +117,5 @@ public class ExampleAccumuloUnitTest {
   @AfterClass
   public static void tearDownMiniCluster() throws Exception {
     accumulo.stop();
-    folder.delete();
   }
 }

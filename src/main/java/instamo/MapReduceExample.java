@@ -50,19 +50,15 @@ public class MapReduceExample {
   public static void main(String[] args) throws Exception {
     File tmpDir = new File(FileUtils.getTempDirectory(), "macc-" + UUID.randomUUID().toString());
     
-    try {
-      MiniAccumuloCluster la = new MiniAccumuloCluster(tmpDir, "pass1234");
-      la.start();
+    MiniAccumuloCluster la = new MiniAccumuloClusterWrapper(tmpDir, "pass1234");
+    la.start();
       
-      System.out.println("\n   ---- Running Mapred Against Accumulo\n");
+    System.out.println("\n   ---- Running Mapred Against Accumulo\n");
+
+    run(la.getInstanceName(), la.getZooKeepers(), "pass1234", args);
       
-      run(la.getInstanceName(), la.getZooKeepers(), "pass1234", args);
+    System.out.println("\n   ---- Ran Mapred Against Accumulo\n");
       
-      System.out.println("\n   ---- Ran Mapred Against Accumulo\n");
-      
-      la.stop();
-    } finally {
-      FileUtils.deleteQuietly(tmpDir);
-    }
+    la.stop();
   }
 }
