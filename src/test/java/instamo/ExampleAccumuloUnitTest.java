@@ -32,7 +32,6 @@ import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
 import org.apache.log4j.Logger;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,21 +43,21 @@ import org.junit.rules.TemporaryFolder;
 
 public class ExampleAccumuloUnitTest {
   private static final Logger log = Logger.getLogger(ExampleAccumuloUnitTest.class);
-  
+
   public static TemporaryFolder folder = new TemporaryFolder();
-  
+
   private static MiniAccumuloCluster accumulo;
 
   @BeforeClass
   public static void setupMiniCluster() throws Exception {
 
     folder.create();
-    
+
     MiniAccumuloConfig config = new MiniAccumuloConfig(folder.getRoot(), "superSecret");
     config.setNumTservers(1);
 
-    accumulo = new MiniAccumuloClusterWrapper(config);
-    
+    accumulo = MiniAccumuloFactory.create(config.getDir(), config.getRootPassword());
+
     accumulo.start();
   }
 
@@ -67,11 +66,11 @@ public class ExampleAccumuloUnitTest {
     // edit this method to play with Accumulo
 
     Instance instance = new ZooKeeperInstance(accumulo.getInstanceName(), accumulo.getZooKeepers());
-    
+
     Connector conn = instance.getConnector("root", new PasswordToken("superSecret"));
-    
+
     conn.tableOperations().create("foo");
-    
+
     BatchWriter bw = conn.createBatchWriter("foo", new BatchWriterConfig());
     Mutation m = new Mutation("1234");
     m.put("name", "first", "Alice");
@@ -102,20 +101,22 @@ public class ExampleAccumuloUnitTest {
     bw.addMutation(m);
 
     bw.close();
-    
+
     Scanner scanner = conn.createScanner("foo", Constants.NO_AUTHS);
     for (Entry<Key,Value> entry : scanner) {
       log.debug(entry.getKey() + " " + entry.getValue());
     }
-   
+
     //TODO use scanner to find common enemy ids between Alice and Bob, then
     //use BatchScanner to look up their names
- 
+
     conn.tableOperations().delete("foo");
   }
-  
+
   @AfterClass
   public static void tearDownMiniCluster() throws Exception {
-    accumulo.stop();
+    if (null != accumulo) {
+        accumulo.stop();
+    }
   }
 }

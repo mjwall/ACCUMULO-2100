@@ -73,12 +73,13 @@
               <artifactId>exec-maven-plugin</artifactId>
               <version>1.2.1</version>
               <configuration>
-              <executable>java</executable>
-              <arguments>
-                  <argument>-classpath</argument>
-                  <classpath />
-                  <argument>instamo.ShellExample</argument>
-              </arguments>
+                <executable>java</executable>
+                <arguments>
+                    <argument>-classpath</argument>
+                    <classpath />
+                    <argument>-Daccumulo.version=${accumulo.version}</argument>
+                    <argument>instamo.ShellExample</argument>
+                </arguments>
               </configuration>
           </plugin>
         </plugins>
@@ -97,6 +98,7 @@
               <arguments>
                 <argument>-classpath</argument>
                 <classpath />
+                <argument>-Daccumulo.version=${accumulo.version}</argument>
                 <argument>${maclass}</argument>
               </arguments>
             </configuration>
@@ -212,6 +214,13 @@
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.16</version>
+        <configuration>
+            <argLine>-Daccumulo.version=${accumulo.version}</argLine>
         </configuration>
       </plugin>
     </plugins>

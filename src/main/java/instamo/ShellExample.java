@@ -27,18 +27,18 @@ import org.apache.accumulo.core.util.shell.Shell;
 import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 
 public class ShellExample implements Runnable {
-  
+
   @Override
   public void run() {
     File tempDir = null;
     MiniAccumuloCluster mac = null;
-    
+
     try {
       tempDir = Files.createTempDir();
 
       final String PASSWORD = "pass1234";
 
-      mac = new MiniAccumuloClusterWrapper(tempDir, PASSWORD);
+      mac = MiniAccumuloFactory.create(tempDir, PASSWORD);
 
       mac.start();
 
@@ -73,7 +73,7 @@ public class ShellExample implements Runnable {
 
     ShellExample shell = new ShellExample();
     shell.run();
-    
+
     System.exit(0);
   }
 }

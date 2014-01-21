@@ -1,4 +1,4 @@
-package instamo;
+package instamo.wrapper;
 
 import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Just a wrapper for the MiniAccumuloCluster
  */
-public class MiniAccumuloClusterWrapper extends MiniAccumuloCluster{
+public abstract class MiniAccumuloClusterWrapper extends MiniAccumuloCluster{
     private static final Logger log = Logger.getLogger(MiniAccumuloClusterWrapper.class);
 
     private MiniAccumuloConfig config;
