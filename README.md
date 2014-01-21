@@ -42,7 +42,7 @@ instance.   There is an example of this in the src directory  The following
 command will run the map reduce example.
 
 ```
-mvn exec:exec -P mapreduce
+mvn compile exec:exec -P mapreduce
 ```
 
 Accumulo Shell
@@ -53,5 +53,13 @@ interactive access to tables in Accumulo. The following command will launch the
 shell against a local Accumulo instance.
 
 ```
-mvn exec:exec -P shell
+mvn compile exec:exec -P shell
 ```
+
+Unit Test
+------------
+
+It is also possible to create unit tests against Accumulo.  The following command will
+launch the ExampleAccumuloUnitTest, which inserts data and then reads it back out.
+
+mvn test
