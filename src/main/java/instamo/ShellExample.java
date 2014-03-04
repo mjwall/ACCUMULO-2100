@@ -18,27 +18,29 @@ package instamo;
 
 import com.google.common.io.Files;
 
+import instamo.factory.MiniAccumuloFactory;
+import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.InterruptedException;
 import java.lang.Runnable;
 
 import org.apache.accumulo.core.util.shell.Shell;
-import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 
 public class ShellExample implements Runnable {
 
   @Override
   public void run() {
     File tempDir = null;
-    MiniAccumuloCluster mac = null;
+    MiniAccumuloClusterWrapper mac = null;
 
     try {
       tempDir = Files.createTempDir();
 
       final String PASSWORD = "pass1234";
 
-      mac = MiniAccumuloFactory.create(tempDir, PASSWORD);
+      mac = MiniAccumuloFactory.createCluster(tempDir, PASSWORD);
 
       mac.start();
 

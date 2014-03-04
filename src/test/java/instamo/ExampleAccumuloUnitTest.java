@@ -16,6 +16,9 @@
  */
 package instamo;
 
+import instamo.factory.MiniAccumuloFactory;
+import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+
 import java.util.Map.Entry;
 
 import org.apache.accumulo.core.Constants;
@@ -29,7 +32,6 @@ import org.apache.accumulo.core.client.security.tokens.PasswordToken;
 import org.apache.accumulo.core.data.Key;
 import org.apache.accumulo.core.data.Mutation;
 import org.apache.accumulo.core.data.Value;
-import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -46,7 +48,7 @@ public class ExampleAccumuloUnitTest {
 
   public static TemporaryFolder folder = new TemporaryFolder();
 
-  private static MiniAccumuloCluster accumulo;
+  private static MiniAccumuloClusterWrapper accumulo;
 
   @BeforeClass
   public static void setupMiniCluster() throws Exception {
@@ -56,7 +58,7 @@ public class ExampleAccumuloUnitTest {
     MiniAccumuloConfig config = new MiniAccumuloConfig(folder.getRoot(), "superSecret");
     config.setNumTservers(1);
 
-    accumulo = MiniAccumuloFactory.create(config.getDir(), config.getRootPassword());
+    accumulo = MiniAccumuloFactory.createCluster(config.getDir(), config.getRootPassword());
 
     accumulo.start();
   }

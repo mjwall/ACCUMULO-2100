@@ -1,0 +1,28 @@
+* TODOs
+
+** My example
+*** DONE remove tmpDir, with option to save
+    CLOSED: [2014-03-03 Mon 14:25]
+*** DONE -D options passed to maven should override property definintion in pom.xml
+    Works by default, but you need to mvn install SNAPSHOT version, I
+    as they are not in any repo I cna find anywhere
+    CLOSED: [2014-03-03 Mon 14:28]
+*** DONE Wrapper for MAC config
+    CLOSED: [2014-03-03 Mon 17:17]
+    - CLOSING NOTE [2014-03-03 Mon 17:17]
+
+*** DONE Add wrapper for 1.5.0, 1.5.1, 1.6.0-SNAPSHOT
+    CLOSED: [2014-03-03 Mon 18:53]
+    - CLOSING NOTE [2014-03-03 Mon 18:53]
+    branch 1.6.1-SNAPSHOT still has version 1.6.0-SNAPSHOT
+    1.4.4 has a different structure, and will be the old archetypes
+*** DONE App example
+    CLOSED: [2014-03-03 Mon 20:38]
+    - CLOSING NOTE [2014-03-03 Mon 20:38]
+*** TODO Make a script to run tests against all version
+*** TODO load data from a file (same as -f option)
+*** TODO start up monitor (should show difference between versions)
+*** TODO Get feedback from Josh, Keith, others
+** accumulo-instamo-archetype
+*** TODO Make code changes back to accumulo-instamo-archetype
+*** TODO Travis-CI integration perhaps
