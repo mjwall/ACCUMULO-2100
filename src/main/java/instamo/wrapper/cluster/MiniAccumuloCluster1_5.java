@@ -25,6 +25,7 @@ public class MiniAccumuloCluster1_5 extends MiniAccumuloCluster implements MiniA
 
     public MiniAccumuloCluster1_5(MiniAccumuloConfigWrapper cfg) throws IOException {
         super((MiniAccumuloConfig) cfg);
+        this.config = cfg;
         showConfigDir();
     }
 
