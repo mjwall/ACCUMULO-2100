@@ -13,4 +13,7 @@ public interface MiniAccumuloConfigWrapper {
     public MiniAccumuloConfig setNumTservers(int numTservers);
     public Map<String,String> getSiteConfig();
     public MiniAccumuloConfig setSiteConfig(Map<String,String> siteConfig);
-}
+
+    public MiniAccumuloConfigWrapper setInputFile(File file);
+    public File getInputFile();
+ }

@@ -11,13 +11,14 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.hadoop.hdfs.server.namenode.UnsupportedActionException;
+import org.apache.log4j.Logger;
 
 public class MiniAccumuloFactory {
+    static Logger logger = Logger.getLogger(MiniAccumuloFactory.class);
+    static String DEFAULT_ACCUMULO_VERSION = "1.5.0";
+
     public static MiniAccumuloClusterWrapper createCluster(File tmpDir, String password) throws IOException {
         String accumuloVersion = getAccumuloVersion();
-        if (null == accumuloVersion) {
-            throw new RuntimeException("accumulo.version was not set, try something like -Daccumulo.version=1.5.0");
-        }
         if (accumuloVersion.equals("1.5.0") || accumuloVersion.equals("1.5.1")) {
             return new MiniAccumuloCluster1_5(tmpDir, password);
         } else if (accumuloVersion.equals("1.6.0-SNAPSHOT")) {
@@ -29,9 +30,6 @@ public class MiniAccumuloFactory {
 
     public static MiniAccumuloClusterWrapper createCluster(MiniAccumuloConfigWrapper config) throws IOException {
         String accumuloVersion = getAccumuloVersion();
-        if (null == accumuloVersion) {
-            throw new RuntimeException("accumulo.version was not set, try something like -Daccumulo.version=1.5.0");
-        }
         if (accumuloVersion.equals("1.5.0") || accumuloVersion.equals("1.5.1")) {
             return new MiniAccumuloCluster1_5(config);
         } else if (accumuloVersion.equals("1.6.0-SNAPSHOT")) {
@@ -43,9 +41,6 @@ public class MiniAccumuloFactory {
 
     public static MiniAccumuloConfigWrapper createConfig(File dir, String rootPassword) throws UnsupportedActionException {
         String accumuloVersion = getAccumuloVersion();
-        if (null == accumuloVersion) {
-            throw new RuntimeException("accumulo.version was not set, try something like -Daccumulo.version=1.5.0");
-        }
         if (accumuloVersion.equals("1.5.0") || accumuloVersion.equals("1.5.1")) {
             return new MiniAccumuloConfig1_5(dir, rootPassword);
         } else if (accumuloVersion.equals("1.6.0-SNAPSHOT")) {
@@ -57,6 +52,11 @@ public class MiniAccumuloFactory {
     }
 
     public static String getAccumuloVersion() {
-        return System.getProperty("accumulo.version");
+        String version = System.getProperty("accumulo.version");
+        if (null == version) {
+            logger.info("No accumulo.version defined, using " + DEFAULT_ACCUMULO_VERSION);
+            version = DEFAULT_ACCUMULO_VERSION;
+        }
+        return version;
     }
 }

@@ -19,10 +19,20 @@
 *** DONE App example
     CLOSED: [2014-03-03 Mon 20:38]
     - CLOSING NOTE [2014-03-03 Mon 20:38]
-*** TODO Make a script to run tests against all version
-*** TODO load data from a file (same as -f option)
+*** DONE Default to 1.5.0
+    CLOSED: [2014-03-08 Sat 09:50]
+    - CLOSING NOTE [2014-03-08 Sat 09:50]
+
+*** DONE Refactor an abstract base class for Cluster and Config
+    CLOSED: [2014-03-08 Sat 14:06]
+    - CLOSING NOTE [2014-03-08 Sat 14:06]
+*** DONE Make a script to run tests against all version
+    CLOSED: [2014-03-08 Sat 14:07]
+    - CLOSING NOTE [2014-03-08 Sat 14:07]
+*** TODO load data from a file (same as -f option, new feature for mac)
 *** TODO start up monitor (should show difference between versions)
 *** TODO Get feedback from Josh, Keith, others
+*** TODO Test an iterator (later?)
 ** accumulo-instamo-archetype
 *** TODO Make code changes back to accumulo-instamo-archetype
 *** TODO Travis-CI integration perhaps
