@@ -14,6 +14,6 @@ public interface MiniAccumuloConfigWrapper {
     public Map<String,String> getSiteConfig();
     public MiniAccumuloConfig setSiteConfig(Map<String,String> siteConfig);
 
-    public MiniAccumuloConfigWrapper setInputFile(File file);
-    public File getInputFile();
+    public MiniAccumuloConfigWrapper setInputFilePath(String inputFilePath);
+    public String getInputFilePath();
  }

@@ -1,0 +1,4 @@
+createtable foo
+insert "a" "b" "c" "d"
+insert "a" "e" "f" "g"
+exit

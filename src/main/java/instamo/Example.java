@@ -37,6 +37,10 @@ public class Example {
         this.rootPassword = rootPassword;
     }
 
+    public void overrideTable(String tableName) {
+        TABLE=tableName;
+    }
+
     public Connector getConnector() throws AccumuloException, AccumuloSecurityException {
         Instance instance = new ZooKeeperInstance(accumulo.getInstanceName(), accumulo.getZooKeepers());
         Connector conn = instance.getConnector("root", new PasswordToken(rootPassword));

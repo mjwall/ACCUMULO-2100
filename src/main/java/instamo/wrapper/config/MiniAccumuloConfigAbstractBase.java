@@ -10,16 +10,16 @@ public abstract class MiniAccumuloConfigAbstractBase extends MiniAccumuloConfig 
         super(dir, rootPassword);
     }
 
-    protected File inputFile = null;
+    protected String inputFilePath = null;
 
     @Override
-    public MiniAccumuloConfigWrapper setInputFile(File file) {
-        this.inputFile = file;
+    public MiniAccumuloConfigWrapper setInputFilePath(String path) {
+        this.inputFilePath = path;
         return this;
     }
 
     @Override
-    public File getInputFile() {
-        return this.inputFile;
+    public String getInputFilePath() {
+        return this.inputFilePath;
     }
 }

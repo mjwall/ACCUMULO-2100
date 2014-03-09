@@ -6,6 +6,7 @@ import instamo.wrapper.config.MiniAccumuloConfigWrapper;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.accumulo.core.util.shell.Shell;
 import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
 import org.apache.log4j.Logger;
@@ -30,6 +31,26 @@ public class MiniAccumuloClusterAbstractBase extends MiniAccumuloCluster impleme
 
     private void showConfigDir() {
         log.debug("Using " + config.getDir()) ;
+    }
+
+    @Override
+    public void start() throws IOException, InterruptedException {
+        super.start();
+        if (null != config.getInputFilePath()) {
+            String inputFilePath = config.getInputFilePath();
+            log.info("Loading data from " + inputFilePath);
+            String[] args = new String[] {"-u", "root",
+                    "-p", config.getRootPassword(),
+                    "-f", inputFilePath,
+                    "-z", this.getInstanceName(), this.getZooKeepers()};
+            // Shell.main calls System.exit, which surefire balks at with a
+            // The forked VM terminated without saying properly goodbye. VM crash or System.exit called
+            // Make sure the last line of you input file is exit
+            //Shell.main(args);
+            Shell shell = new Shell();
+            shell.config(args);
+            shell.start();
+        }
     }
 
     @Override

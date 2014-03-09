@@ -29,7 +29,9 @@
 *** DONE Make a script to run tests against all version
     CLOSED: [2014-03-08 Sat 14:07]
     - CLOSING NOTE [2014-03-08 Sat 14:07]
-*** TODO load data from a file (same as -f option, new feature for mac)
+*** DONE load data from a file (same as -f option, new feature for mac)
+    CLOSED: [2014-03-08 Sat 22:42]
+    - CLOSING NOTE [2014-03-08 Sat 22:42]
 *** TODO start up monitor (should show difference between versions)
 *** TODO Get feedback from Josh, Keith, others
 *** TODO Test an iterator (later?)
