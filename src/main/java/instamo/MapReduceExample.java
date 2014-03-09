@@ -22,7 +22,6 @@ import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
 import java.io.File;
 import java.util.UUID;
 
-import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.test.continuous.ContinuousIngest;
 import org.apache.accumulo.test.continuous.ContinuousVerify;
 import org.apache.commons.io.FileUtils;
