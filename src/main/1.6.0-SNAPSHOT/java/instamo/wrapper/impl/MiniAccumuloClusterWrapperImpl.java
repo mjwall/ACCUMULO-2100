@@ -1,6 +1,7 @@
-package instamo.wrapper.cluster;
+package instamo.wrapper.impl;
 
-import instamo.wrapper.config.MiniAccumuloConfigWrapper;
+import instamo.wrapper.MiniAccumuloClusterAbstractBase;
+import instamo.wrapper.MiniAccumuloConfigWrapper;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,6 @@
-package instamo.wrapper.cluster;
+package instamo.wrapper;
 
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.config.MiniAccumuloConfigWrapper;
+import instamo.wrapper.impl.MiniAccumuloConfigWrapperImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class MiniAccumuloClusterAbstractBase extends MiniAccumuloCluster impleme
 
     public MiniAccumuloClusterAbstractBase(File tmpDir, String password) throws IOException {
         super(tmpDir, password);
-        this.configWrapper = MiniAccumuloFactory.createConfig(tmpDir, password);
+        this.configWrapper = new MiniAccumuloConfigWrapperImpl(tmpDir, password);
         showConfigDir();
     }
 

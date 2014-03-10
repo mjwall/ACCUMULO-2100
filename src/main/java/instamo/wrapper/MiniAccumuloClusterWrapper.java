@@ -1,4 +1,4 @@
-package instamo.wrapper.cluster;
+package instamo.wrapper;
 
 import java.io.IOException;
 

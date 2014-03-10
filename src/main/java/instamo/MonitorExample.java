@@ -1,8 +1,9 @@
 package instamo;
 
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
-import instamo.wrapper.config.MiniAccumuloConfigWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloConfigWrapper;
+import instamo.wrapper.impl.MiniAccumuloClusterWrapperImpl;
+import instamo.wrapper.impl.MiniAccumuloConfigWrapperImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,10 +24,10 @@ public class MonitorExample implements Runnable {
 
         final String PASSWORD = "pass1234";
 
-        MiniAccumuloConfigWrapper config = MiniAccumuloFactory.createConfig(tempDir, PASSWORD);
+        MiniAccumuloConfigWrapper config = new MiniAccumuloConfigWrapperImpl(tempDir, PASSWORD);
         config.setStartMonitor(true);
 
-        mac = MiniAccumuloFactory.createCluster(config);
+        mac = new MiniAccumuloClusterWrapperImpl(config);
 
         mac.start();
 

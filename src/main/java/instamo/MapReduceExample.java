@@ -16,8 +16,8 @@
  */
 package instamo;
 
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
+import instamo.wrapper.impl.MiniAccumuloClusterWrapperImpl;
 
 import java.io.File;
 import java.util.UUID;
@@ -52,7 +52,7 @@ public class MapReduceExample {
   public static void main(String[] args) throws Exception {
     File tmpDir = new File(FileUtils.getTempDirectory(), "macc-" + UUID.randomUUID().toString());
 
-    MiniAccumuloClusterWrapper la = MiniAccumuloFactory.createCluster(tmpDir, "pass1234");
+    MiniAccumuloClusterWrapper la = new MiniAccumuloClusterWrapperImpl(tmpDir, "pass1234");
     la.start();
 
     System.out.println("\n   ---- Running Mapred Against Accumulo\n");

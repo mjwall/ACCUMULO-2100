@@ -16,8 +16,8 @@
  */
 package instamo;
 
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
+import instamo.wrapper.impl.MiniAccumuloClusterWrapperImpl;
 
 import java.util.Map.Entry;
 
@@ -58,7 +58,7 @@ public class ExampleAccumuloUnitTest {
     MiniAccumuloConfig config = new MiniAccumuloConfig(folder.getRoot(), "superSecret");
     config.setNumTservers(1);
 
-    accumulo = MiniAccumuloFactory.createCluster(config.getDir(), config.getRootPassword());
+    accumulo = new MiniAccumuloClusterWrapperImpl(config.getDir(), config.getRootPassword());
 
     accumulo.start();
   }

@@ -2,9 +2,10 @@ package instamo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
-import instamo.wrapper.config.MiniAccumuloConfigWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloConfigWrapper;
+import instamo.wrapper.impl.MiniAccumuloClusterWrapperImpl;
+import instamo.wrapper.impl.MiniAccumuloConfigWrapperImpl;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -30,8 +31,8 @@ public class ExampleTest {
         TemporaryFolder folder = new TemporaryFolder();
         folder.create();
         rootPassword = "apasswordhere";
-        MiniAccumuloConfigWrapper config = MiniAccumuloFactory.createConfig(folder.getRoot(), rootPassword);
-        accumulo = MiniAccumuloFactory.createCluster(config);
+        MiniAccumuloConfigWrapper config = new MiniAccumuloConfigWrapperImpl(folder.getRoot(), rootPassword);
+        accumulo = new MiniAccumuloClusterWrapperImpl(config);
         accumulo.start();
 
         example = new Example(accumulo, rootPassword);

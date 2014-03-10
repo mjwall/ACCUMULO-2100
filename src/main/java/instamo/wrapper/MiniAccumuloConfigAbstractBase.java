@@ -1,4 +1,4 @@
-package instamo.wrapper.config;
+package instamo.wrapper;
 
 import java.io.File;
 

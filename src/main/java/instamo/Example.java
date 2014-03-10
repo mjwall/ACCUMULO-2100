@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-
 import org.apache.accumulo.core.client.AccumuloException;
 import org.apache.accumulo.core.client.AccumuloSecurityException;
 import org.apache.accumulo.core.client.BatchWriter;
@@ -24,7 +23,7 @@ import org.apache.accumulo.core.security.Authorizations;
 import org.apache.accumulo.core.security.ColumnVisibility;
 import org.apache.hadoop.io.Text;
 
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
 
 public class Example {
     private MiniAccumuloClusterWrapper accumulo;

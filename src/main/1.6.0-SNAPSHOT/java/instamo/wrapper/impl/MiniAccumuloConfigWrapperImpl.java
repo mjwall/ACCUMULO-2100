@@ -1,4 +1,6 @@
-package instamo.wrapper.config;
+package instamo.wrapper.impl;
+
+import instamo.wrapper.MiniAccumuloConfigAbstractBase;
 
 import java.io.File;
 

@@ -18,8 +18,8 @@ package instamo;
 
 import com.google.common.io.Files;
 
-import instamo.factory.MiniAccumuloFactory;
-import instamo.wrapper.cluster.MiniAccumuloClusterWrapper;
+import instamo.wrapper.MiniAccumuloClusterWrapper;
+import instamo.wrapper.impl.MiniAccumuloClusterWrapperImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class ShellExample implements Runnable {
 
       final String PASSWORD = "pass1234";
 
-      mac = MiniAccumuloFactory.createCluster(tempDir, PASSWORD);
+      mac = new MiniAccumuloClusterWrapperImpl(tempDir, PASSWORD);
 
       mac.start();
 
