@@ -11,36 +11,39 @@ import org.apache.accumulo.minicluster.MiniAccumuloCluster;
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
 import org.apache.log4j.Logger;
 
+// Stuff implemented here is same code across different versions of accumulo
 public class MiniAccumuloClusterAbstractBase extends MiniAccumuloCluster implements MiniAccumuloClusterWrapper {
 
     private static final Logger log = Logger.getLogger(MiniAccumuloClusterAbstractBase.class);
 
-    protected MiniAccumuloConfigWrapper config;
+    protected MiniAccumuloConfigWrapper configWrapper;
+
+    protected MiniAccumuloCluster cluster = null;
 
     public MiniAccumuloClusterAbstractBase(File tmpDir, String password) throws IOException {
         super(tmpDir, password);
-        this.config = MiniAccumuloFactory.createConfig(tmpDir, password);
+        this.configWrapper = MiniAccumuloFactory.createConfig(tmpDir, password);
         showConfigDir();
     }
 
     public MiniAccumuloClusterAbstractBase(MiniAccumuloConfigWrapper cfg) throws IOException {
         super((MiniAccumuloConfig) cfg);
-        this.config = cfg;
+        this.configWrapper = cfg;
         showConfigDir();
     }
 
     private void showConfigDir() {
-        log.debug("Using " + config.getDir()) ;
+        log.debug("Using " + configWrapper.getDir()) ;
     }
 
     @Override
     public void start() throws IOException, InterruptedException {
         super.start();
-        if (null != config.getInputFilePath()) {
-            String inputFilePath = config.getInputFilePath();
+        if (null != configWrapper.getInputFilePath()) {
+            String inputFilePath = configWrapper.getInputFilePath();
             log.info("Loading data from " + inputFilePath);
             String[] args = new String[] {"-u", "root",
-                    "-p", config.getRootPassword(),
+                    "-p", configWrapper.getRootPassword(),
                     "-f", inputFilePath,
                     "-z", this.getInstanceName(), this.getZooKeepers()};
             // Shell.main calls System.exit, which surefire balks at with a

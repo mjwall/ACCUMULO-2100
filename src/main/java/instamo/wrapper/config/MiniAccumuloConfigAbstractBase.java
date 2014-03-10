@@ -11,6 +11,7 @@ public abstract class MiniAccumuloConfigAbstractBase extends MiniAccumuloConfig 
     }
 
     protected String inputFilePath = null;
+    boolean startMonitor = false;
 
     @Override
     public MiniAccumuloConfigWrapper setInputFilePath(String path) {
@@ -21,5 +22,16 @@ public abstract class MiniAccumuloConfigAbstractBase extends MiniAccumuloConfig 
     @Override
     public String getInputFilePath() {
         return this.inputFilePath;
+    }
+
+    @Override
+    public MiniAccumuloConfigWrapper setStartMonitor(boolean start) {
+        this.startMonitor = start;
+        return this;
+    }
+
+    @Override
+    public boolean getStartMonitor() {
+        return this.startMonitor;
     }
 }

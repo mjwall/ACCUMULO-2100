@@ -16,4 +16,6 @@ public interface MiniAccumuloConfigWrapper {
 
     public MiniAccumuloConfigWrapper setInputFilePath(String inputFilePath);
     public String getInputFilePath();
+    public MiniAccumuloConfigWrapper setStartMonitor(boolean start);
+    public boolean getStartMonitor();
  }
