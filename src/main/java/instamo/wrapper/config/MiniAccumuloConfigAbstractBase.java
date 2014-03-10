@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.apache.accumulo.minicluster.MiniAccumuloConfig;
 
+//Stuff implemented here is same code across different versions of accumulo
 public abstract class MiniAccumuloConfigAbstractBase extends MiniAccumuloConfig implements MiniAccumuloConfigWrapper {
 
     public MiniAccumuloConfigAbstractBase(File dir, String rootPassword) {

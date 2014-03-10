@@ -25,9 +25,9 @@
   <url>http://accumulo.apache.org</url>
 
   <properties>
-    <!-- Accumulo version 1.5.0 and greater supported -->
-    <accumulo.version>1.5.0</accumulo.version>
-    <!-- 
+    <!-- Accumulo version 1.5.0, 1.5.1 and 1.6.0-SNAPSHOT supported -->
+    <accumulo.version>1.6.0-SNAPSHOT</accumulo.version>
+    <!--
     <accumulo.version>1.5.0</accumulo.version>
     <accumulo.version>1.5.1</accumulo.version>
     <accumulo.version>1.6.0-SNAPSHOT</accumulo.version>
@@ -128,7 +128,7 @@
         <version>${accumulo.version}</version>
         <type>pom</type>
     </dependency>
-    <!-- 
+    <!--
     <dependency>
       <groupId>org.apache.accumulo</groupId>
       <artifactId>accumulo-core</artifactId>
@@ -209,7 +209,7 @@
       <artifactId>commons-httpclient</artifactId>
       <version>${httpclient.version}</version>
     </dependency>
-    <!-- 
+    <!--
 
     <dependency>
       <groupId>commons-io</groupId>
@@ -232,6 +232,25 @@
           <source>1.6</source>
           <target>1.6</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/${accumulo.version}/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>

@@ -12,18 +12,19 @@ import org.apache.accumulo.server.Accumulo;
 import org.apache.accumulo.server.client.HdfsZooInstance;
 import org.apache.accumulo.server.conf.ServerConfiguration;
 import org.apache.accumulo.server.monitor.Monitor;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.log4j.Logger;
 
-public class MiniAccumuloCluster1_5 extends MiniAccumuloClusterAbstractBase {
+public class MiniAccumuloClusterWrapperImpl extends MiniAccumuloClusterAbstractBase {
 
-    private static final Logger log = Logger.getLogger(MiniAccumuloCluster1_5.class);
+    private static final Logger log = Logger.getLogger(MiniAccumuloClusterWrapperImpl.class);
 
-    public MiniAccumuloCluster1_5(File tmpDir, String password)
+    public MiniAccumuloClusterWrapperImpl(File tmpDir, String password)
             throws IOException {
         super(tmpDir, password);
     }
 
-    public MiniAccumuloCluster1_5(MiniAccumuloConfigWrapper config) throws IOException {
+    public MiniAccumuloClusterWrapperImpl(MiniAccumuloConfigWrapper config) throws IOException {
         super(config);
     }
 
@@ -35,7 +36,6 @@ public class MiniAccumuloCluster1_5 extends MiniAccumuloClusterAbstractBase {
             try {
                 Instance instance = HdfsZooInstance.getInstance();
                 ServerConfiguration serverConfiguration = new ServerConfiguration(instance);
-                //FileUtil.getFileSystem(conf, acuconf)
                 FileSystem fs = FileUtil.getFileSystem(CachedConfiguration.getInstance(), ServerConfiguration.getSiteConfiguration());
                 Accumulo.init(fs, serverConfiguration, "monitor");
                 Monitor monitor = new Monitor();
